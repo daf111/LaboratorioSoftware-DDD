@@ -8,10 +8,15 @@ namespace _01_Aplicacion
 {
     public class TipoProductoServicio
     {
+        private _02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.TipoProducto> _repositorio;
+        public TipoProductoServicio(_02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.TipoProducto> repositorio)
+        {
+            _repositorio = repositorio;
+        }
+
         public List<_02_Dominio.Entidades.TipoProducto> Listar()
         {
-            _03_InfraestructuraDatos.SQLServer.TipoProductoRepositorio repositorio = new _03_InfraestructuraDatos.SQLServer.TipoProductoRepositorio();
-            return repositorio.Leer();
+            return _repositorio.Leer();
         }
     }
 }

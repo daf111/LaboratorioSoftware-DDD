@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Oracle\BaseDeDatosOracleServer.cs" />
+    <Compile Include="Oracle\TipoProductoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLServer\BaseDeDatosSQLServer.cs" />
     <Compile Include="SQLServer\TipoProductoRepositorio.cs" />
