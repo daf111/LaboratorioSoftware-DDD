@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
+using NPoco;
 
-namespace _03_InfraestructuraDatos.Oracle
+namespace _03_InfraestructuraDatos.NPOCO
 {
     public class TipoProductoRepositorio : _02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.TipoProducto>
     {
@@ -26,20 +28,10 @@ namespace _03_InfraestructuraDatos.Oracle
 
         public List<_02_Dominio.Entidades.TipoProducto> Leer()
         {
-            const string SQL_STATEMENT = "SELECT id, nombre FROM tipo_producto";
-
             List<_02_Dominio.Entidades.TipoProducto> resultado = new List<_02_Dominio.Entidades.TipoProducto>();
-            using (SqlConnection conexion = BaseDeDatosOracleServer.getIntancia().getConexion())
+            using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                SqlCommand cmd = new SqlCommand(SQL_STATEMENT, conexion);
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        _02_Dominio.Entidades.TipoProducto tipoProducto = MapeoTipoProducto(dr);
-                        resultado.Add(tipoProducto);
-                    }
-                }
+                resultado = db.Fetch<_02_Dominio.Entidades.TipoProducto>();
             }
             return resultado;
         }
@@ -49,12 +41,5 @@ namespace _03_InfraestructuraDatos.Oracle
             throw new NotImplementedException();
         }
 
-        private _02_Dominio.Entidades.TipoProducto MapeoTipoProducto(SqlDataReader dr)
-        {
-            _02_Dominio.Entidades.TipoProducto tipoProducto = new _02_Dominio.Entidades.TipoProducto();
-            tipoProducto.Id = BaseDeDatosOracleServer.GetDataValue<int>(dr, "id");
-            tipoProducto.Nombre = BaseDeDatosOracleServer.GetDataValue<string>(dr, "nombre");
-            return tipoProducto;
-        }
     }
 }

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace _03_InfraestructuraDatos.SQLServer
 {
-    public class BaseDeDatosSQLServer
+    public class BaseDeDatos
     {
 
-        private static BaseDeDatosSQLServer _instancia = null;
-        private string stringConexion = "Data Source=.;Initial Catalog=laboratorio-software;User ID=test;Password=test";
+        private static BaseDeDatos _instancia = null;
+        private string stringConexion = System.Configuration.ConfigurationManager.ConnectionStrings["SQLServerConnection"].ConnectionString;
         private SqlConnection conexion = null;
 
-        private BaseDeDatosSQLServer()
+        private BaseDeDatos()
         {
             try
             {
@@ -26,11 +26,11 @@ namespace _03_InfraestructuraDatos.SQLServer
             }
         }
 
-        public static BaseDeDatosSQLServer getIntancia()
+        public static BaseDeDatos getIntancia()
         {
             if (_instancia == null)
             {
-                _instancia = new BaseDeDatosSQLServer();
+                _instancia = new BaseDeDatos();
             }
             return _instancia;
         }

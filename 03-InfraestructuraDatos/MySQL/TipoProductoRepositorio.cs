@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
-namespace _03_InfraestructuraDatos.SQLServer
+namespace _03_InfraestructuraDatos.MySQL
 {
     public class TipoProductoRepositorio : _02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.TipoProducto>
     {
@@ -29,10 +30,10 @@ namespace _03_InfraestructuraDatos.SQLServer
             const string SQL_STATEMENT = "SELECT id, nombre FROM tipo_producto";
 
             List<_02_Dominio.Entidades.TipoProducto> resultado = new List<_02_Dominio.Entidades.TipoProducto>();
-            using (SqlConnection conexion = BaseDeDatos.getIntancia().getConexion())
+            using (MySqlConnection conexion = BaseDeDatos.getIntancia().getConexion())
             {
-                SqlCommand cmd = new SqlCommand(SQL_STATEMENT, conexion);
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                MySqlCommand cmd = new MySqlCommand(SQL_STATEMENT, conexion);
+                using (MySqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
@@ -49,7 +50,7 @@ namespace _03_InfraestructuraDatos.SQLServer
             throw new NotImplementedException();
         }
 
-        private _02_Dominio.Entidades.TipoProducto MapeoTipoProducto(SqlDataReader dr)
+        private _02_Dominio.Entidades.TipoProducto MapeoTipoProducto(MySqlDataReader dr)
         {
             _02_Dominio.Entidades.TipoProducto tipoProducto = new _02_Dominio.Entidades.TipoProducto();
             tipoProducto.Id = BaseDeDatos.GetDataValue<int>(dr, "id");
