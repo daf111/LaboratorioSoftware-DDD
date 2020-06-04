@@ -22,7 +22,8 @@ namespace _03_InfraestructuraDatos.SQLServer
                 this.conexion.Open();
             } catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
+                _04_InfraestructuraTransversal.Bitacora.GuardarExcepcion(ex);
             }
         }
 
