@@ -18,5 +18,9 @@ namespace _01_Aplicacion
         {
             return _repositorio.Leer();
         }
+        public _02_Dominio.Entidades.TipoProducto ListarPor(int id)
+        {
+            return _repositorio.LeerPor(id);
+        }
     }
 }
