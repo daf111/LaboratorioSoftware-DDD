@@ -13,16 +13,11 @@ namespace _03_InfraestructuraDatos.NPOCO
     {
         public _02_Dominio.Entidades.TipoProducto Actualizar(_02_Dominio.Entidades.TipoProducto entidad)
         {
-            _02_Dominio.Entidades.TipoProducto nuevoTipo = new _02_Dominio.Entidades.TipoProducto();
-            nuevoTipo = entidad;
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                var nuevoTip = db.SingleById<_02_Dominio.Entidades.TipoProducto>(nuevoTipo.Id);
-                nuevoTip.Id = entidad.Id;
-                nuevoTip.Nombre = entidad.Nombre;
-                db.Update(nuevoTip);
+                db.Update(entidad);
             }
-            return nuevoTipo;
+            return entidad;
         }
 
         public _02_Dominio.Entidades.TipoProducto Eliminar(int id)

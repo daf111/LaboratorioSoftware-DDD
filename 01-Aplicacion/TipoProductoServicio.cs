@@ -30,5 +30,9 @@ namespace _01_Aplicacion
         {
             return _repositorio.Eliminar(id);
         }
+        public _02_Dominio.Entidades.TipoProducto Actualizar(_02_Dominio.Entidades.TipoProducto nuev)
+        {
+            return _repositorio.Actualizar(nuev);
+        }
     }
 }

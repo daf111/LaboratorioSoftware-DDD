@@ -21,7 +21,10 @@ namespace LaboratorioDeSoftware
             _02_Dominio.Entidades.TipoProducto nuevo = new _02_Dominio.Entidades.TipoProducto();
             nuevo.Nombre = "hogar";
             //tipoProductoServicio.Guardar(nuevo);
-            _02_Dominio.Entidades.TipoProducto eliminado = tipoProductoServicio.Eliminar(4);
+            //_02_Dominio.Entidades.TipoProducto eliminado = tipoProductoServicio.Eliminar(4);
+            tipoProducto.Nombre = "didactico";
+            tipoProductoServicio.Actualizar(tipoProducto);
+
         }
     }
 }
