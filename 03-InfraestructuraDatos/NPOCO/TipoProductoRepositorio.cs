@@ -39,14 +39,12 @@ namespace _03_InfraestructuraDatos.NPOCO
 
         public _02_Dominio.Entidades.TipoProducto Guardar(_02_Dominio.Entidades.TipoProducto entidad)
         {
-            _02_Dominio.Entidades.TipoProducto nuevoTipo = new _02_Dominio.Entidades.TipoProducto();
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                nuevoTipo.Id = entidad.Id;
-                nuevoTipo.Nombre = entidad.Nombre;
-                db.Insert(nuevoTipo);
+                
+                db.Insert(entidad);
             }
-            return nuevoTipo;
+            return entidad;
         }
 
         public List<_02_Dominio.Entidades.TipoProducto> Leer()

@@ -17,7 +17,10 @@ namespace LaboratorioDeSoftware
             _01_Aplicacion.TipoProductoServicio tipoProductoServicio = kernel.Get<_01_Aplicacion.TipoProductoServicio>();
 
             List<_02_Dominio.Entidades.TipoProducto> listado = tipoProductoServicio.Listar();
-            _02_Dominio.Entidades.TipoProducto tipoProducto = tipoProductoServicio.ListarPor(1);
+            _02_Dominio.Entidades.TipoProducto tipoProducto = tipoProductoServicio.ListarPor(2);
+            _02_Dominio.Entidades.TipoProducto nuevo = new _02_Dominio.Entidades.TipoProducto();
+            nuevo.Nombre = "Hogar";
+            tipoProductoServicio.Guardar(nuevo);
         }
     }
 }

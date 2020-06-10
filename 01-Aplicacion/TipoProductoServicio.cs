@@ -22,5 +22,9 @@ namespace _01_Aplicacion
         {
             return _repositorio.LeerPor(id);
         }
+        public _02_Dominio.Entidades.TipoProducto Guardar(_02_Dominio.Entidades.TipoProducto nuevo)
+        {
+            return _repositorio.Guardar(nuevo);
+        }
     }
 }
