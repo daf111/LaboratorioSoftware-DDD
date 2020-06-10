@@ -27,14 +27,13 @@ namespace _03_InfraestructuraDatos.NPOCO
 
         public _02_Dominio.Entidades.TipoProducto Eliminar(int id)
         {
-            _02_Dominio.Entidades.TipoProducto nuevoTipo = new _02_Dominio.Entidades.TipoProducto();
-            nuevoTipo.Id = id;
+            _02_Dominio.Entidades.TipoProducto nuevoTip;
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                var nuevoTip = db.SingleById<_02_Dominio.Entidades.TipoProducto>(nuevoTipo.Id);
+                nuevoTip = db.SingleById<_02_Dominio.Entidades.TipoProducto>(id);
                 db.Delete(nuevoTip);
             }
-            return nuevoTipo;//no deberia ser un void?
+            return nuevoTip;
         }
 
         public _02_Dominio.Entidades.TipoProducto Guardar(_02_Dominio.Entidades.TipoProducto entidad)

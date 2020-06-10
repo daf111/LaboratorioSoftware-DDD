@@ -26,5 +26,9 @@ namespace _01_Aplicacion
         {
             return _repositorio.Guardar(nuevo);
         }
+        public _02_Dominio.Entidades.TipoProducto Eliminar(int id)
+        {
+            return _repositorio.Eliminar(id);
+        }
     }
 }
