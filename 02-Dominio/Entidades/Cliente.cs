@@ -15,6 +15,8 @@ namespace _02_Dominio.Entidades
         public int Id { get; set; }
         [Column("nombre")]
         public string Nombre { get; set; }
+        [Column("fechaNac")]
+        public DateTime FechaNac { get; set; }
 
         public bool Validar()
         {

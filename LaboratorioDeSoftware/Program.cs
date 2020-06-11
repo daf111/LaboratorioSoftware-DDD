@@ -27,12 +27,14 @@ namespace LaboratorioDeSoftware
 
             _01_Aplicacion.ClienteServicio clienteServicio = new _01_Aplicacion.ClienteServicio(new _03_InfraestructuraDatos.NPOCO.ClienteRepositorio());
             List<_02_Dominio.Entidades.Cliente> listadoC = clienteServicio.Listar();
-            _02_Dominio.Entidades.Cliente cliente = clienteServicio.ListarPor(5);//Sirve como un buscador, lo utilizo en Actualizar también
+            _02_Dominio.Entidades.Cliente cliente = clienteServicio.ListarPor(1);//Sirve como un buscador, lo utilizo en Actualizar también
             _02_Dominio.Entidades.Cliente nuevoC = new _02_Dominio.Entidades.Cliente();
+            DateTime estafecha = new DateTime(1996, 04, 09);
             nuevoC.Nombre = "erre";
             //clienteServicio.Guardar(nuevoC);
-            cliente.Nombre = "Ambar";
-            //clienteServicio.Actualizar(cliente);
+            //cliente.Nombre = "Ambar";
+            cliente.FechaNac = estafecha;
+            clienteServicio.Actualizar(cliente);
             //_02_Dominio.Entidades.Cliente eliminaC = clienteServicio.Eliminar(6);
 
         }
