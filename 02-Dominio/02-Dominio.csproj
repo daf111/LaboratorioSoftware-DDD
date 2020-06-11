@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\IEntidad.cs" />
     <Compile Include="Entidades\TipoProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
