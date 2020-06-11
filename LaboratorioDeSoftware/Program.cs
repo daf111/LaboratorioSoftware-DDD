@@ -19,15 +19,21 @@ namespace LaboratorioDeSoftware
             List<_02_Dominio.Entidades.TipoProducto> listado = tipoProductoServicio.Listar();
             _02_Dominio.Entidades.TipoProducto tipoProducto = tipoProductoServicio.ListarPor(2);
             _02_Dominio.Entidades.TipoProducto nuevo = new _02_Dominio.Entidades.TipoProducto();
-            nuevo.Nombre = "didactico";
+            nuevo.Nombre = "juguetes";
             //tipoProductoServicio.Guardar(nuevo);
             tipoProducto.Nombre = "hogar";
-            tipoProductoServicio.Actualizar(tipoProducto);
+            //tipoProductoServicio.Actualizar(tipoProducto);
             //_02_Dominio.Entidades.TipoProducto eliminado = tipoProductoServicio.Eliminar(4);
 
             _01_Aplicacion.ClienteServicio clienteServicio = new _01_Aplicacion.ClienteServicio(new _03_InfraestructuraDatos.NPOCO.ClienteRepositorio());
             List<_02_Dominio.Entidades.Cliente> listadoC = clienteServicio.Listar();
-
+            _02_Dominio.Entidades.Cliente cliente = clienteServicio.ListarPor(5);//Sirve como un buscador, lo utilizo en Actualizar también
+            _02_Dominio.Entidades.Cliente nuevoC = new _02_Dominio.Entidades.Cliente();
+            nuevoC.Nombre = "erre";
+            //clienteServicio.Guardar(nuevoC);
+            cliente.Nombre = "Ambar";
+            //clienteServicio.Actualizar(cliente);
+            //_02_Dominio.Entidades.Cliente eliminaC = clienteServicio.Eliminar(6);
 
         }
     }
