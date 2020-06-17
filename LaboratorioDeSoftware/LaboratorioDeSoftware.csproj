@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,13 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bindings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\01-Aplicacion\01-Aplicacion.csproj">
@@ -63,10 +57,6 @@
     <ProjectReference Include="..\02-Dominio\02-Dominio.csproj">
       <Project>{cbcac179-a7fb-4a68-af13-70d2843a55fd}</Project>
       <Name>02-Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\03-InfraestructuraDatos\03-InfraestructuraDatos.csproj">
-      <Project>{2584dfde-b810-4081-8205-3f6accdabdbb}</Project>
-      <Name>03-InfraestructuraDatos</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
