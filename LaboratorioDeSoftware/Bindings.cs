@@ -12,6 +12,7 @@ namespace LaboratorioDeSoftware
         public override void Load()
         {
             Bind<_02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.TipoProducto>>().To<_03_InfraestructuraDatos.NPOCO.TipoProductoRepositorio>();
+            Bind<_02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.Cliente>>().To<_03_InfraestructuraDatos.NPOCO.ClienteRepositorio>();
         }
     }
 }

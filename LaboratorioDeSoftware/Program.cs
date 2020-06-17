@@ -25,7 +25,9 @@ namespace LaboratorioDeSoftware
             //tipoProductoServicio.Actualizar(tipoProducto);
             //_02_Dominio.Entidades.TipoProducto eliminado = tipoProductoServicio.Eliminar(4);
 
-            _01_Aplicacion.ClienteServicio clienteServicio = new _01_Aplicacion.ClienteServicio(new _03_InfraestructuraDatos.NPOCO.ClienteRepositorio());
+            //Aplicando Ninject
+            _01_Aplicacion.ClienteServicio clienteServicio = kernel.Get<_01_Aplicacion.ClienteServicio>();
+            //_01_Aplicacion.ClienteServicio clienteServicio = new _01_Aplicacion.ClienteServicio(new _03_InfraestructuraDatos.NPOCO.ClienteRepositorio());
             List<_02_Dominio.Entidades.Cliente> listadoC = clienteServicio.Listar();
             _02_Dominio.Entidades.Cliente cliente = clienteServicio.ListarPor(1);//Sirve como un buscador, lo utilizo en Actualizar también
             _02_Dominio.Entidades.Cliente nuevoC = new _02_Dominio.Entidades.Cliente();
@@ -36,7 +38,6 @@ namespace LaboratorioDeSoftware
             cliente.FechaNac = estafecha;
             clienteServicio.Actualizar(cliente);
             //_02_Dominio.Entidades.Cliente eliminaC = clienteServicio.Eliminar(6);
-
         }
     }
 }
