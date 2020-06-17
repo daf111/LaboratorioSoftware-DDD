@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _02_Dominio.Entidades;
 
 namespace _01_Aplicacion
 {
     public class TipoProductoServicio
     {
-        private _02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.TipoProducto> _repositorio;
-        public TipoProductoServicio(_02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.TipoProducto> repositorio)
-        {
-            _repositorio = repositorio;
-        }
-
         public List<_02_Dominio.Entidades.TipoProducto> Listar()
         {
-            return _repositorio.Leer();
+            _03_InfraestructuraDatos.SQLServer.TipoProductoRepositorio repositorio = new _03_InfraestructuraDatos.SQLServer.TipoProductoRepositorio();
+            return repositorio.Leer();
         }
+        public _02_Dominio.Entidades.TipoProducto LeerPor(int nro)
+        {
+            _03_InfraestructuraDatos.SQLServer.TipoProductoRepositorio repositorio = new _03_InfraestructuraDatos.SQLServer.TipoProductoRepositorio();
+            return repositorio.LeerPor(nro);
+
+
+
+        }
+
+        
     }
 }

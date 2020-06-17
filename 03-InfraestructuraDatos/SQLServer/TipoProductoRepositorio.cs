@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using _02_Dominio.Entidades;
 
 namespace _03_InfraestructuraDatos.SQLServer
 {
@@ -16,7 +17,22 @@ namespace _03_InfraestructuraDatos.SQLServer
 
         public _02_Dominio.Entidades.TipoProducto Eliminar(int id)
         {
-            throw new NotImplementedException();
+            string SQL_STATEMENT = "DELETE * FROM tipo_producto where id=" + id;
+
+            TipoProducto resultad = new TipoProducto();
+            using (SqlConnection conexion = BaseDeDatosSQLServer.getIntancia().getConexion())
+            {
+                SqlCommand cmd = new SqlCommand(SQL_STATEMENT);
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        _02_Dominio.Entidades.TipoProducto tipoProducto = MapeoTipoProducto(dr);
+                        resultad = tipoProducto;
+                    }
+                }
+            }
+            return resultad;
         }
 
         public _02_Dominio.Entidades.TipoProducto Guardar(_02_Dominio.Entidades.TipoProducto entidad)
@@ -24,21 +40,21 @@ namespace _03_InfraestructuraDatos.SQLServer
             throw new NotImplementedException();
         }
 
+       
+
         public List<_02_Dominio.Entidades.TipoProducto> Leer()
         {
             const string SQL_STATEMENT = "SELECT id, nombre FROM tipo_producto";
 
             List<_02_Dominio.Entidades.TipoProducto> resultado = new List<_02_Dominio.Entidades.TipoProducto>();
-            using (SqlConnection conexion = BaseDeDatos.getIntancia().getConexion())
+            SqlConnection conexion = BaseDeDatosSQLServer.getIntancia().getConexion();
+            SqlCommand cmd = new SqlCommand(SQL_STATEMENT, conexion);
+            using (SqlDataReader dr = cmd.ExecuteReader())
             {
-                SqlCommand cmd = new SqlCommand(SQL_STATEMENT, conexion);
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                while (dr.Read())
                 {
-                    while (dr.Read())
-                    {
-                        _02_Dominio.Entidades.TipoProducto tipoProducto = MapeoTipoProducto(dr);
-                        resultado.Add(tipoProducto);
-                    }
+                    _02_Dominio.Entidades.TipoProducto tipoProducto = MapeoTipoProducto(dr);
+                    resultado.Add(tipoProducto);
                 }
             }
             return resultado;
@@ -46,14 +62,28 @@ namespace _03_InfraestructuraDatos.SQLServer
 
         public _02_Dominio.Entidades.TipoProducto LeerPor(int id)
         {
-            throw new NotImplementedException();
+            
+            string SQL_STATEMENT = "SELECT id, nombre FROM tipo_producto where id="+id;
+
+            TipoProducto resultad= new TipoProducto();
+            SqlConnection conexion = BaseDeDatosSQLServer.getIntancia().getConexion();
+            SqlCommand cmd = new SqlCommand(SQL_STATEMENT, conexion);
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    _02_Dominio.Entidades.TipoProducto tipoProducto = MapeoTipoProducto(dr);
+                    resultad=tipoProducto;
+                }
+            }
+            return resultad;
         }
 
         private _02_Dominio.Entidades.TipoProducto MapeoTipoProducto(SqlDataReader dr)
         {
             _02_Dominio.Entidades.TipoProducto tipoProducto = new _02_Dominio.Entidades.TipoProducto();
-            tipoProducto.Id = BaseDeDatos.GetDataValue<int>(dr, "id");
-            tipoProducto.Nombre = BaseDeDatos.GetDataValue<string>(dr, "nombre");
+            tipoProducto.Id = BaseDeDatosSQLServer.GetDataValue<int>(dr, "id");
+            tipoProducto.Nombre = BaseDeDatosSQLServer.GetDataValue<string>(dr, "nombre");
             return tipoProducto;
         }
     }
