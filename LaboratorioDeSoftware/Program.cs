@@ -32,7 +32,7 @@ namespace LaboratorioDeSoftware
             _02_Dominio.Entidades.Cliente cliente = clienteServicio.ListarPor(1);//Sirve como un buscador, lo utilizo en Actualizar también
             _02_Dominio.Entidades.Cliente nuevoC = new _02_Dominio.Entidades.Cliente();
             DateTime estafecha = new DateTime(1996, 04, 09);
-            nuevoC.Nombre = "erre";
+            nuevoC.Nombre = "nuevo";
             //clienteServicio.Guardar(nuevoC);
             //cliente.Nombre = "Ambar";
             cliente.FechaNac = estafecha;

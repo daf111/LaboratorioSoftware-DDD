@@ -9,55 +9,63 @@ namespace _03_InfraestructuraDatos.NPOCO
 {
     public class ClienteRepositorio : _02_Dominio.Repositorio.IRepositorio<_02_Dominio.Entidades.Cliente>
     {
-        public _02_Dominio.Entidades.Cliente Actualizar(_02_Dominio.Entidades.Cliente entidad)
+        public const string MensajeIdClienteNoExiste = "La secuencia no contiene elementos";
+        public _02_Dominio.Entidades.Cliente Actualizar(_02_Dominio.Entidades.Cliente modific)
         {
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                db.Update(entidad);
+                db.Update(modific);
             }
-            return entidad;
+            return modific;
         }
 
         public _02_Dominio.Entidades.Cliente Eliminar(int id)
         {
-            _02_Dominio.Entidades.Cliente nuevoTip;
+            _02_Dominio.Entidades.Cliente borrar;
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                nuevoTip = db.SingleById<_02_Dominio.Entidades.Cliente>(id);
-                db.Delete(nuevoTip);
+                borrar = db.SingleById<_02_Dominio.Entidades.Cliente>(id);
+                db.Delete(borrar);
             }
-            return nuevoTip;
+            return borrar;
         }
 
-        public _02_Dominio.Entidades.Cliente Guardar(_02_Dominio.Entidades.Cliente entidad)
+        public _02_Dominio.Entidades.Cliente Guardar(_02_Dominio.Entidades.Cliente nuevo)
         {
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
 
-                db.Insert(entidad);
+                db.Insert(nuevo);
             }
-            return entidad;
+            return nuevo;
         }
 
         public List<_02_Dominio.Entidades.Cliente> Leer()
         {
-            List<_02_Dominio.Entidades.Cliente> resultado = new List<_02_Dominio.Entidades.Cliente>();
+            List<_02_Dominio.Entidades.Cliente> leerto = new List<_02_Dominio.Entidades.Cliente>();
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                resultado = db.Fetch<_02_Dominio.Entidades.Cliente>();
+                leerto = db.Fetch<_02_Dominio.Entidades.Cliente>();
             }
-            return resultado;
+            return leerto;
         }
 
         public _02_Dominio.Entidades.Cliente LeerPor(int id)
         {
-            _02_Dominio.Entidades.Cliente nuevoTipo;
-            //nuevoTipo.Id = id;
+            _02_Dominio.Entidades.Cliente leerc;
             using (IDatabase db = BaseDeDatos.getInstancia())
             {
-                nuevoTipo = db.SingleById<_02_Dominio.Entidades.Cliente>(id);
+                leerc = db.SingleById<_02_Dominio.Entidades.Cliente>(id);
             }
-            return nuevoTipo;
+
+            if (leerc == null)
+            {
+                throw new InvalidOperationException(MensajeIdClienteNoExiste);
+            }
+
+            return leerc;
+
+            
         }
     }
 }
